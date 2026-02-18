@@ -18,10 +18,16 @@ class Project extends Model
         "featured"
     ];
 
-    // definiálja a sok-sok kapcsolatot a Project és Technology modellek között
+    # definiálja a sok-sok kapcsolatot a Project és Technology modellek között
     public function technologies(): BelongsToMany
     {
-        // visszaadja a kapcsolódó technológiákat a projekthez, a pivot táblán keresztül
+        # visszaadja a kapcsolódó technológiákat a projekthez, a pivot táblán keresztül
         return $this->belongsToMany(Technology::class);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        # megmondja a Laravelnek, hogy a slug mezőt használja a route model binding során ahelyett, hogy az id-t használná
+        return 'slug';
     }
 }

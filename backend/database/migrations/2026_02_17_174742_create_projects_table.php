@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title'); // projekt címe
-            $table->string('slug'); // egyedi azonosító a URL-ben
+            $table->string('slug')->unique(); // egyedi azonosító a URL-ben
             $table->text('description')->nullable(); // rövid leírás
             $table->text('content')->nullable(); // részletes leírás
             $table->string('image_url')->nullable(); // projekt képének URL-je

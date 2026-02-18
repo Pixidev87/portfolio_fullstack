@@ -13,10 +13,10 @@ class Technology extends Model
         "category"
     ];
 
-    // definiálja a sok-sok kapcsolatot a Technology és Project modellek között
+    # definiálja a sok-sok kapcsolatot a Technology és Project modellek között
     public function projects(): BelongsToMany
     {
-        // visszaadja a kapcsolódó projekteket a technológiához, a pivot táblán keresztül
+        # visszaadja a kapcsolódó projekteket a technológiához, a pivot táblán keresztül
         return $this->belongsToMany(Project::class);
     }
 }
