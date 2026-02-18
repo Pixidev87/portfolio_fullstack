@@ -10,17 +10,12 @@ use Illuminate\Support\Str;
  */
 class ProjectFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         $title = fake()->sentence();
         return [
             "title" => $title,
-            "slug" => fake()->Str::slug($title),
+            "slug" => Str::slug($title),
             "description" => fake()->paragraph(),
             "content" => fake()->paragraphs(3, true),
             "image_url" => fake()->imageUrl(640, 480, 'business'),
