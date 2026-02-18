@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Technology;
+use App\Models\Project;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $techs = Technology::factory()->count(10)->create();
+
+        Project::factory()->count(20)->create()->each(function ($project) use ($techs) {
+            $project->technologies()->attach(
+                $techs->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
     }
 }

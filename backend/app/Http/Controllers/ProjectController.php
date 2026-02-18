@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -35,7 +34,7 @@ class ProjectController extends Controller
         # Ha van kép feltöltve, akkor elmentjük a storage-ba és a URL-jét hozzáadjuk a validált adatokhoz.
         if( $request->hasFile('image') ) {
             $path = $request->file('image')->store('projects', 'public');
-            $validated['image_url'] = Storage::url($path);
+            $validated['image_url'] = $path;
         }
         # Létrehozzuk a projektet az adatbázisban a validált adatokkal.
         $project = Project::create($validated);

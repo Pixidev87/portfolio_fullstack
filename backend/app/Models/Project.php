@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Project extends Model
 {
+    use HasFactory;
     protected $fillable = [
         "title",
         "slug",
@@ -29,5 +32,12 @@ class Project extends Model
     {
         # megmondja a Laravelnek, hogy a slug mezőt használja a route model binding során ahelyett, hogy az id-t használná
         return 'slug';
+    }
+
+    public function imageURL(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => asset('storage/' . $value), # a tárolt image_url értékét egy teljes URL-re alakítja át, amely a storage könyvtárra mutat
+        );
     }
 }
