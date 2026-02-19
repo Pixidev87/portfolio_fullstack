@@ -36,7 +36,7 @@ The goal of this project is to demonstrate modern full-stack development practic
 
 ### Frontend
 - React
-- Bootstrap 5
+- Material UI
 - Axios
 
 
